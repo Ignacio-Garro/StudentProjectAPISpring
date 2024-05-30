@@ -1,11 +1,11 @@
-package org.example.studentprojectapispring2.Model;
+package hr.algebra.studentprojectapispring2.Model;
 
 public class Student {
     private Long id;
     private String name;
     private String email;
 
-    public Student(Long id, String name, String email, int averageGrade) {
+    public Student(Long id, String name, String email) {
         this.id = id;
         this.name = name;
         this.email = email;

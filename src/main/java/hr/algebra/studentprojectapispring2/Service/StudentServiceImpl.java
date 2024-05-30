@@ -1,13 +1,13 @@
-package org.example.studentprojectapispring2.Service;
+package hr.algebra.studentprojectapispring2.Service;
 
-import org.example.studentprojectapispring2.Model.Student;
+import hr.algebra.studentprojectapispring2.Model.Student;
 import org.springframework.stereotype.Service;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 @Service
-public class StudentService {
+public class StudentServiceImpl implements StudentService {
     private List<Student> students = new ArrayList<>();
 
     public List<Student> getAllStudents() {

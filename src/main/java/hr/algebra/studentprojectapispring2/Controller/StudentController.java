@@ -1,10 +1,11 @@
-package org.example.studentprojectapispring2.Controller;
+package hr.algebra.studentprojectapispring2.Controller;
 
+import hr.algebra.studentprojectapispring2.Model.Student;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.jms.core.JmsTemplate;
 import org.springframework.web.bind.annotation.*;
 
-import org.example.studentprojectapispring2.Service.StudentService;
-import org.example.studentprojectapispring2.Model.Student;
+import hr.algebra.studentprojectapispring2.Service.StudentService;
 
 import java.util.List;
 import java.util.Optional;
@@ -16,6 +17,12 @@ public class StudentController {
     @Autowired
     private StudentService studentService;
 
+    private final JmsTemplate jmsTemplate;
+
+    public StudentController(JmsTemplate jmsTemplate) {
+        this.jmsTemplate = jmsTemplate;
+    }
+
     /**
      * GET /students
      * Example: GET http://localhost:8080/students
@@ -25,6 +32,8 @@ public class StudentController {
         return studentService.getAllStudents();
     }
 
+
+
     /**
      * GET /students/{id}
      * Example: GET http://localhost:8080/students/1
@@ -33,6 +42,8 @@ public class StudentController {
     public Optional<Student> getStudentById(@PathVariable Long id) {
         return studentService.getStudentById(id);
     }
+
+
 
     /**
      * POST /students
@@ -47,8 +58,17 @@ public class StudentController {
      */
     @PostMapping
     public void addStudent(@RequestBody Student student) {
+        /*
+        jmsTemplate.convertAndSend(
+                "Saving the the hardware to the database: " +
+                        student.getName());
+
+         */
+
         studentService.addStudent(student);
     }
+
+
 
     /**
      * PUT /students/{id}
@@ -64,6 +84,8 @@ public class StudentController {
     public void updateStudent(@PathVariable Long id, @RequestBody Student student) {
         studentService.updateStudent(id, student);
     }
+
+
 
     /**
      * DELETE /students/{id}

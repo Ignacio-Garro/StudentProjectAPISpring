@@ -1,4 +1,4 @@
-package org.example.studentprojectapispring2;
+package hr.algebra.studentprojectapispring2;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
